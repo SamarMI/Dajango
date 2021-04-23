@@ -1,0 +1,14 @@
+{% extends "layout/main.html/" %}
+
+{% block title %}
+        <title> create category</title>
+{% endblock %}
+
+{% block body %}
+
+<form action="{% url "createcategory"   %}"  method="post" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit"> Add Category</button>
+</form>
+{% endblock %}

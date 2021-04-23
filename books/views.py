@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .forms import BookForm
+from .forms import BookForm ,CategoryForm
 from .models import Book
 
 
@@ -37,4 +37,14 @@ def delete(request,id):
     book = Book.objects.get(pk=id)
     book.delete()
     return redirect("index")
+
+def createcategory(request):
+    form = CategoryForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect("index")
+    
+    return render(request ,"books/createcategory.html",{
+        "form": form 
+    })
 
